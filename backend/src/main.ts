@@ -2,9 +2,7 @@ import { userModal } from './db';
 import express from "express"
 
 const app = express();
-//  process.env.PORT;
 const port = 3000;
-console.log(port)
 
 app.use(express.json());
 
