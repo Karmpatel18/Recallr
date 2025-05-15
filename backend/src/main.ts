@@ -1,14 +1,14 @@
-import { userModal } from './db';
+import dotenv from 'dotenv';
+dotenv.config();
+import { userModal , connectToDB } from './db';
 import express from "express"
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT
 
 app.use(express.json());
 
-app.get("/", function(req , res ) {
-    res.json("hi from the home page")
-})
+
 
 app.post("/api/v1/signup", async(req,res) => {
 

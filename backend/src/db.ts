@@ -1,17 +1,20 @@
 import { Schema , model } from "mongoose"
 import mongoose from "mongoose";
 
-async function connectDB(){
-    try {
-    await mongoose.connect(
-      "mongodb+srv://karmpatel1203:karm9558@ineed.zrwxt.mongodb.net/secondBrain" // databaseNameHere
-    );
+export async function connectToDB(){
+  const URL = process.env.DATABASE_URL;
+  if (!URL) {
+    throw new Error("DATABASE_URL environment variable is not defined");
+  }
+  try {
+    await mongoose.connect(URL);
     console.log("database connection successfully");
-    } catch (e) {
+  } catch (e) {
     console.log(`failed to connect database ${e}`);
-    }
+  }
 }
-connectDB(); 
+connectToDB();
+
 
 const UserSchema = new Schema({
     username: {type: String , unique: true},
