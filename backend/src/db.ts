@@ -1,5 +1,6 @@
-import { Schema , model } from "mongoose"
+import { Schema , Types, model } from "mongoose"
 import mongoose from "mongoose";
+import { constants } from "node:zlib";
 
 export async function connectToDB(){
   const URL = process.env.DATABASE_URL;
@@ -16,9 +17,34 @@ export async function connectToDB(){
 connectToDB();
 
 
-const UserSchema = new Schema({
-    username: {type: String , unique: true},
-    password: String
+const UserSchema = new mongoose.Schema({
+    username: { type: String ,required:true, unique: true},
+    password: { type: String , required: true }
 })
 
 export const userModal = model("users", UserSchema)
+
+const tagSchema = new mongoose.Schema({
+  title: { type: String, required: true, unique: true }
+});
+
+export const Tag = model('Tag', tagSchema);
+
+const contentTypes = ["video", "audio", "image", "article"]
+const contentSchema = new mongoose.Schema({
+  title:{ type: String, required: true },
+  link: { type: String , required: true},
+  type: { type: String, enums:[contentTypes], required: true },
+  tags: [{ type: Types.ObjectId, ref: 'Tag' }],
+  userId: {type:Types.ObjectId, ref: 'User', required: true },
+
+})
+
+export const contentModal = model('content', contentSchema);
+
+const linkSchema = new mongoose.Schema({
+  hash: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+});
+
+export const linkModal = model('link', linkSchema);

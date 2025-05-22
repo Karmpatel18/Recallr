@@ -1,8 +1,9 @@
+import { authMiddleware } from './authMiddleware';
 import dotenv from 'dotenv';
 dotenv.config();
-import { userModal , connectToDB } from './db';
+import { userModal , connectToDB, contentModal } from './db';
 import express from "express"
-
+import jwt from 'jsonwebtoken'
 const app = express();
 const port = process.env.PORT
 
@@ -36,16 +37,47 @@ app.post("/api/v1/signup", async(req,res) => {
     }
 })
 
-app.post("/api/v1/signin", (req,res) => {
+app.post("/api/v1/signin",async (req,res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+    const userExists = await userModal.findOne({
+        username,
+        password
+    })
+    if( userExists ){
+        const token = jwt.sign({
+            id:userExists._id
+        }, process.env.JWT_SECRET)
 
+        res.status(200).send({
+            Authorization: token
+        })
+    }
+    else{
+        res.status(403).send({
+            message:"incorrect credentials"
+        })
+    }
 })
 
 app.get("/api/v1/content", (req,res) => {
-
+    
 })
 
-app.post("/api/v1/content", (req,res) => {
+app.post("/api/v1/content", authMiddleware , async (req,res) => {
+    const title = req.body.title;
+    const link = req.body.link;
+    const tag = req.body.tag;
+    const type = req.body.type;
 
+    await contentModal.create({
+        title,
+        link,
+        tag,
+        type,
+        //@ts-ignore
+        userId:req.userId
+    }) 
 })
 
 
