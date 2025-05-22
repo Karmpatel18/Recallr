@@ -22,7 +22,7 @@ const UserSchema = new mongoose.Schema({
     password: { type: String , required: true }
 })
 
-export const userModal = model("users", UserSchema)
+export const userModal = model("User", UserSchema)
 
 const tagSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true }
