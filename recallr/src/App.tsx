@@ -2,14 +2,18 @@
 import './App.css'
 import { ShareIcon } from './components/icons/ShareIcon'
 import Button from './components/ui/Button'
+import { SideBar } from './components/ui/SideBar'
 
 function App() {
-  
+
 
   return (
-    
-    <div className='bg-neutral-50 font-inter flex w-full justify-center h-screen items-center'>
-    <Button text='share' variant='primary' endicon={<ShareIcon/>} />
+
+    <div className='bg-[#F0F0F0] font-inter flex w-full p-2 h-screen'>
+      <SideBar />
+      <div className='ml-96'>
+        <Button text='share' variant='primary' endicon={<ShareIcon />} size='md'/>
+      </div>
     </div>
   )
 }

@@ -8,9 +8,9 @@ interface ButtonProps {
     starticon?: ReactElement;
     endicon?: ReactElement;
 }
-const handleRequest = () => {
-    //onClick handler function
-}
+//const handleRequest = () => {
+// onClick handler function
+//}
 
 function Button({
     //passing default props
