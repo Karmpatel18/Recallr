@@ -94,6 +94,18 @@ app.post("/api/v1/content", authMiddleware , async (req,res) => {
     })
 })
 
+app.delete("/api/v1/content", authMiddleware ,async (req,res) => {
+    const contentId = req.body.contentId;
+
+    await contentModal.deleteMany({
+        //@ts-ignore
+        userId:req.userId,
+        contentId
+    })
+    res.json({
+        message:"deleted"
+    })
+})
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);

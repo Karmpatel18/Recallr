@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-geist:"Geist";
+  --font-inter:"Inter"
+}

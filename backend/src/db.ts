@@ -1,6 +1,5 @@
 import { Schema , Types, model } from "mongoose"
 import mongoose from "mongoose";
-import { constants } from "node:zlib";
 
 export async function connectToDB(){
   const URL = process.env.DATABASE_URL;
@@ -31,6 +30,7 @@ const tagSchema = new mongoose.Schema({
 export const Tag = model('Tag', tagSchema);
 
 const contentTypes = ["video", "audio", "image", "article"]
+
 const contentSchema = new mongoose.Schema({
   title:{ type: String, required: true },
   link: { type: String , required: true},
