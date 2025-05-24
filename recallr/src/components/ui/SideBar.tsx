@@ -13,15 +13,19 @@ export const SideBar = () => {
     // }
 
     return (
-        <div className={`h-full  bg-[#F7F7F7] rounded-2xl transition-all duration-300 p-4 w-60 border-[1px] border-[#D2D2D2] `}>
-            
-            <div className="flex space-x-2 items-center">
-                <div className="bg-orange-600 w-8 h-8 rounded-lg"></div>
-                {/* <div className="font-semibold tracking-tighter text-2xl">Recallr</div> */}
-                <div className="font-medium tracking-tight text-md">@username</div>
-                
+        <div className={`h-full  bg-primary rounded-xl transition-all duration-300 p-4 w-60 border-[1px] border-[#D2D2D2] flex flex-col justify-between`}>
+            <div className="flex flex-col">
+                <div className="flex space-x-2 items-center">
+                    <div className="bg-pink-300 w-12 h-12 rounded-lg">
+                    </div>
+                    <div className="flex flex-col">
+                        <div className="font-semibold tracking-tighter text-2xl">Recallr</div>
+                        <div className="font-normal tracking-tight text-sm ">@username</div>
+                    </div>
+                </div>
+                <div className="border-b-[1px] border-neutral-200 mt-4"></div>
             </div>
-            <div className="border-b-[1px] border-neutral-200 mt-4"></div>
+            <div className="text-md tracking-tight text-red-600 transition-all hover:text-red-500 font-medium bg-primary hover:bg-secondary duration-200 rounded-md px-3 py-2 text-center cursor-pointer">Logout</div>
         </div>
     )
 }

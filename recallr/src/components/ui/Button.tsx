@@ -21,11 +21,11 @@ function Button({
     endicon,
    
 }: ButtonProps) {
-    const baseStyles = "inline-flex items-center justify-center font-medium rounded-md transition-colors duration-200 ";
+    const baseStyles = "inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200 cursor-pointer";
 
     const variantStyles = {
         primary: "bg-neutral-900 text-white hover:bg-neutral-800",
-        secondary: "bg-gray-200 text-black hover:bg-gray-300"
+        secondary: "bg-primary border-[1px] border-neutral-300 text-black hover:bg-secondary"
     };
 
     const sizeStyles = {
