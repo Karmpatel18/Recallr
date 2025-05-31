@@ -7,6 +7,7 @@ interface ButtonProps {
     text: string;
     starticon?: ReactElement;
     endicon?: ReactElement;
+    onClick?:() => void;
 }
 //const handleRequest = () => {
 // onClick handler function
@@ -19,6 +20,7 @@ function Button({
     text,
     starticon,
     endicon,
+    onClick
    
 }: ButtonProps) {
     const baseStyles = "inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200 cursor-pointer";
@@ -42,7 +44,7 @@ function Button({
 
     return (
 
-    <button className = {`${classes} gap-1.5  `}>
+    <button className = {`${classes} gap-1.5  `} onClick={onClick} >
         {starticon}{text}{endicon}
     </button>
     )
