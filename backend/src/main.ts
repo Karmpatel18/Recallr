@@ -4,14 +4,22 @@ dotenv.config();
 import { userModal , connectToDB, contentModal } from './db';
 import express from "express"
 import jwt from 'jsonwebtoken'
+const authRoutes = require("./routes/auth");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT
 import { authMiddleware } from './authMiddleware';
 
+
+// ALLOW FRONTEND ORIGIN
+app.use(cors({
+  origin: "http://localhost:5173", // React dev server
+  credentials: true               // Allow cookies if needed
+}));
+
 app.use(express.json());
 
-
-
+app.use("/api/v1/auth", authRoutes);
 app.post("/api/v1/signup", async(req,res) => {
 
     const username = req.body.username;

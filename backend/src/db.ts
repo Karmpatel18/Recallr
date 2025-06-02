@@ -1,7 +1,7 @@
-import { Schema , Types, model } from "mongoose"
+import { Schema, Types, model } from "mongoose"
 import mongoose from "mongoose";
 
-export async function connectToDB(){
+export async function connectToDB() {
   const URL = process.env.DATABASE_URL;
   if (!URL) {
     throw new Error("DATABASE_URL environment variable is not defined");
@@ -17,8 +17,12 @@ connectToDB();
 
 
 const UserSchema = new mongoose.Schema({
-    username: { type: String ,required:true, unique: true},
-    password: { type: String , required: true }
+  // username: { type: String ,required:true, unique: true},
+  // password: { type: String , required: true }
+  name: String,
+  email: { type: String, unique: true },
+  picture: String,
+  googleId: String,
 })
 
 export const userModal = model("User", UserSchema)
@@ -32,11 +36,11 @@ export const Tag = model('Tag', tagSchema);
 const contentTypes = ["video", "audio", "image", "article"]
 
 const contentSchema = new mongoose.Schema({
-  title:{ type: String, required: true },
-  link: { type: String , required: true},
-  type: { type: String, enums:[contentTypes], required: true },
+  title: { type: String, required: true },
+  link: { type: String, required: true },
+  type: { type: String, enums: [contentTypes], required: true },
   tags: [{ type: Types.ObjectId, ref: 'Tag' }],
-  userId: {type:Types.ObjectId, ref: 'User', required: true },
+  userId: { type: Types.ObjectId, ref: 'User', required: true },
 
 })
 

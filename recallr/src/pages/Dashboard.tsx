@@ -7,25 +7,25 @@ import { useState } from 'react'
 export const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpen = () => setIsModalOpen(true);
-  const handleClose = () => setIsModalOpen(false);
+    const handleOpen = () => setIsModalOpen(true);
+    const handleClose = () => setIsModalOpen(false);
 
-    return(
-        
+    return (
+
         <div className='flex w-full min-h-screen p-2'>
-          <div className='flex w-full '>
-            <SideBar />
-            <div className='ml-4 flex flex-col w-full  h-min'>
-              <div className='flex gap-2 flex-row-reverse'>
-                <Button text='share' variant='secondary' endicon={<ShareIcon/>} size='md' />
-                <Button text='Add content' variant='primary' size='md' onClick={handleOpen} />
-              </div>
+            <div className='flex w-full '>
+                <SideBar />
+                <div className='ml-4 flex flex-col w-full  h-min'>
+                    <div className='flex gap-2 flex-row-reverse'>
+                        <Button text='share' variant='secondary' endicon={<ShareIcon />} size='md' />
+                        <Button text='Add content' variant='primary' size='md' onClick={handleOpen} />
+                    </div>
 
-              <Card />
+                    <Card />
+                </div>
             </div>
-          </div>
-          {isModalOpen && <Modal onClose={handleClose} />}
+            {isModalOpen && <Modal onClose={handleClose} />}
         </div>
-        
+
     )
 }

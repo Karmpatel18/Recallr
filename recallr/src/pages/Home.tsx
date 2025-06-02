@@ -1,14 +1,27 @@
 import HandArrow from '../components/icons/HandArrow';
 import Button from '../components/ui/Button'
 import { BsArrowRight } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 function Home() {
+    
     return (
         <div className='flex flex-col min-h-screen w-full'>
             <div className='flex w-full justify-between px-10 py-4 h-min items-center'>
                 <div className='font-semibold tracking-wider text-lg'>RECALLR</div>
                 <div className='flex gap-2'>
-                    <Button text='Login' variant='secondary' size='md' />
-                    <Button text='Get Started' variant='primary' endicon={<BsArrowRight size={22}/>} size='md'/>
+                    
+                    <Link to="/login">
+                        <div>
+                            <Button text='Login' variant='secondary' size='md'/>
+                        </div>
+                    </Link>
+                    <Button 
+                    text='Get Started' 
+                    variant='primary' 
+                    endicon={<BsArrowRight size={22}/>} 
+                    size='md'/>
+                    
+                    
                 </div>
             </div>
             <div className='h-[1062px] overflow-hidden'>
