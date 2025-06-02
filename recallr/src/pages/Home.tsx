@@ -11,7 +11,7 @@ function Home() {
                     <Button text='Get Started' variant='primary' endicon={<BsArrowRight size={22}/>} size='md'/>
                 </div>
             </div>
-            <div className='h-[1518px] overflow-hidden'>
+            <div className='h-[1062px] overflow-hidden'>
                 <div className='relative h-screen -mt-[1px] '>
                     <svg
                         className="absolute inset-0  text-neutral-200"
@@ -36,11 +36,13 @@ function Home() {
                             <Button text='Get Started' variant='primary' size='md'/>
                             <Button text='Developer' variant='secondary' size='md'/>
                         </div>
+                        <div className='mt-24 shadow-2xl'>
+                            <img className='' src='./Screen.png'/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className='py-4 px-10 border-[1px] border-neutral-200 text-[12px] w-full flex justify-center text-neutral-800'>Build with 
-            &#x2764; by @karmpat72748262
+            <div className='py-4 px-10 border-[1px] border-neutral-900 text-[13px] w-full flex  text-neutral-400 bg-neutral-900 items-center gap-2 justify-center font-normal'><span className='tracking-wider'>RECALLR</span>&copy; 2025 
             </div>
         </div>
 
