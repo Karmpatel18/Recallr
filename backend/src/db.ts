@@ -13,17 +13,18 @@ export async function connectToDB() {
     console.log(`failed to connect database ${e}`);
   }
 }
+
+// Connect to database
 connectToDB();
 
-
 const UserSchema = new mongoose.Schema({
-  // username: { type: String ,required:true, unique: true},
-  // password: { type: String , required: true }
-  name: String,
-  email: { type: String, unique: true },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   picture: String,
-  googleId: String,
-})
+  googleId: { type: String, unique: true },
+}, {
+  timestamps: true
+});
 
 export const userModal = model("User", UserSchema)
 
@@ -41,7 +42,6 @@ const contentSchema = new mongoose.Schema({
   type: { type: String, enums: [contentTypes], required: true },
   tags: [{ type: Types.ObjectId, ref: 'Tag' }],
   userId: { type: Types.ObjectId, ref: 'User', required: true },
-
 })
 
 export const contentModal = model('content', contentSchema);

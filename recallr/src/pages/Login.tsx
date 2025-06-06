@@ -38,13 +38,6 @@ export const Login = () => {
                     </defs>
                     <rect width="100" height="100" fill="url(#squareGrid)" />
                 </svg>
-
-
-
-
-
-
-
                 <div className="bg-neutral-50 p-4 rounded-lg border-[1px] border-neutral-300 z-60 shadow-lg ">
                     <h1 className="z-10 text-4xl font-semibold text-neutral-800 mb-1 tracking-tight ">RECALLR</h1>
                     <p className="z-10 text-neutral-500 font-normal tracking-tight text-sm mb-4">
@@ -59,13 +52,20 @@ export const Login = () => {
                     {/* Optional Footer or Tagline */}
                     <p className="z-10 mt-4 text-xs text-neutral-400 text-center font-normal">No passwords. No clutter. Just Recallr.</p>
                 </div>
-
-
-
-
             </div>
 
         </div>
     );
 }
+
+
+
+
+
+
+
+
+
+
+
 
