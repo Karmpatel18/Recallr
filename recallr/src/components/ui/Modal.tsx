@@ -1,12 +1,23 @@
 import CloseIcon from "../icons/CloseIcon";
+import Button from "./Button";
 import { Input } from "./Input";
-import { useState } from "react";
+import { useState , useRef } from "react";
 interface ModalProps {
     onClose: () => void;
 }
 
+enum ContentType {
+    Youtube="youtube",
+    Twitter="twitter"
+}
 export const Modal = ({ onClose }: ModalProps) => {
-    const [email, setEmail] = useState("");
+    const [ type , SetType ] = useState(ContentType.Youtube);
+    const titleRef = useRef<HTMLInputElement>(null);
+    const linkRef = useRef<HTMLInputElement>(null);
+    function handleSubmit(){
+        const title = titleRef.current?.value;
+        const link = linkRef.current?.value;
+    }
     return (
         <div  onClick={onClose}  className="fixed h-screen w-full backdrop-blur-sm bg-neutral-800/10 justify-center items-center top-0 left-0 z-10">
             <div className="flex w-full justify-center items-center h-screen z-0">
@@ -20,15 +31,33 @@ export const Modal = ({ onClose }: ModalProps) => {
                         </div>
                     </div>
 
-
+                <div className="flex flex-col space-y-2">
                     <Input
+                        ref={titleRef}
                         label="Title"
-                        type="email"
-                        placeholder="example@domain.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        placeholder="title"
                         required
                     />
+                    
+                    <Input
+                        ref={linkRef}
+                        label="Link"
+                        type="text"
+                        placeholder="Link"
+                        required
+                    />
+                    <div className="flex gap-2">
+                        <Button text="Youtube" variant={type === ContentType.Youtube ? "primary" : "secondary" } size="sm" onClick={()=>{
+                            SetType(ContentType.Youtube)
+                        }} />
+                        <Button text="Twitter" variant={type === ContentType.Twitter ? "primary" : "secondary" } size="sm" onClick={()=>{
+                            SetType(ContentType.Twitter)
+                        }} />
+                    </div>
+                    
+                    <Button text="submit" variant="primary" size="md" onClick={handleSubmit}/>
+                </div>
                 </div>
             </div>
 
