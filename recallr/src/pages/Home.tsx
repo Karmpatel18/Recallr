@@ -23,27 +23,19 @@ function Home() {
             <div className='flex w-full justify-between px-10 py-4 h-min items-center'>
                 <div className='font-semibold tracking-wider text-lg'>RECALLR</div>
                 <div className='flex gap-2'>
-                    {isLoggedIn ? (
-                        <div className='bg-amber-300 rounded-full h-[42px] w-[42px]'></div>
-                    ) :
-                        (<div>
-                            <Link to="/login">
-                                <div>
-                                    <Button text='Login' variant='secondary' size='md' />
-                                </div>
-                            </Link>
-                        </div>)
-                    }
-                    {!isLoggedIn ? 
-                        (<Button
+                    <Link to="/login">
+                        <div>
+                            <Button 
+                            text='Login' 
+                            variant='secondary' 
+                            size='md' />
+                        </div>
+                    </Link>
+                    <Button
                         text='Get Started'
                         variant='primary'
                         endicon={<BsArrowRight size={22} />}
-                        size='md' />) : (null)
-                    }
-                    
-
-
+                        size='md' />
                 </div>
             </div>
             <div className='h-[1062px] overflow-hidden'>

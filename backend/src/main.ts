@@ -1,10 +1,9 @@
 
 import dotenv from 'dotenv';
 dotenv.config();
-import { userModal , connectToDB, contentModal } from './db';
+import { userModal , contentModal } from './db';
 import express from "express"
 import jwt from 'jsonwebtoken'
-const authRoutes = require("./routes/auth");
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT
@@ -19,7 +18,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use("/api/v1/auth", authRoutes);
 app.post("/api/v1/signup", async(req,res) => {
 
     const username = req.body.username;
