@@ -23,7 +23,7 @@ function Home() {
             <div className='flex w-full justify-between px-10 py-4 h-min items-center'>
                 <div className='font-semibold tracking-wider text-lg'>RECALLR</div>
                 <div className='flex gap-2'>
-                    <Link to="/login">
+                    <Link to="/signup">
                         <div>
                             <Button 
                             text='Login' 

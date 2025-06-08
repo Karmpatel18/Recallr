@@ -17,18 +17,12 @@ export async function connectToDB() {
 // Connect to database
 connectToDB();
 
-const UserSchema = new mongoose.Schema({
-  //   name: { type: String, required: true },
-  //   email: { type: String, required: true, unique: true },
-  //   picture: String,
-  //   googleId: { type: String, unique: true },
-  // }, {
-  //   timestamps: true
-    username: { type: String, unique: true },
-    password: String
+const UserSchema = new Schema({
+    username: { type: String, unique: true , required: true },
+    password: { type: String, required: true }
 });
 
-export const userModal = model("User", UserSchema)
+export const userModal = mongoose.models.User || mongoose.model('User', UserSchema);
 
 const tagSchema = new mongoose.Schema({
   title: { type: String, required: true, unique: true }

@@ -10,18 +10,14 @@ const port = process.env.PORT
 import { authMiddleware } from './authMiddleware';
 
 
-// ALLOW FRONTEND ORIGIN
-app.use(cors({
-  origin: "http://localhost:5173", // React dev server
-  credentials: true               // Allow cookies if needed
-}));
+app.use(cors());
 
 app.use(express.json());
 
 app.post("/api/v1/signup", async(req,res) => {
 
-    const username = req.body.username;
-    const password = req.body.password;
+    const { username , password } = req.body;
+    
     try{
     await userModal.create({
         username: username,
@@ -58,7 +54,7 @@ app.post("/api/v1/signin",async (req,res) => {
         }, process.env.JWT_SECRET)
     
         res.status(200).send({
-            authorization: token
+            token
         })
     }
     else{
