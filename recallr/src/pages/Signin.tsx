@@ -47,7 +47,7 @@ export const Signin = () => {
                     label="password" />
                 <Button
                     onClick={handleSignin}
-                    text="Signup"
+                    text="Signin"
                     variant="primary"
                     size="md" />
             </div>
