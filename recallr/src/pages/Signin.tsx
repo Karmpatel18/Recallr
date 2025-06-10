@@ -32,6 +32,7 @@ export const Signin = () => {
     }
     return (
         <div className="flex w-full min-h-screen justify-center items-center">
+            <div className="flex flex-col w-full items-center justify-center">
             <div className="flex flex-col max-w-md space-y-3 w-full p-4 bg-primary rounded-2xl border-neutral-200 border-[1px]">
                 <div className="font-semibold text-2xl tracking-tighter">
                     Signin recallr*
@@ -50,7 +51,16 @@ export const Signin = () => {
                     variant="primary"
                     size="md" />
             </div>
+                <div className="text-neutral-400 tracking-tighter mt-2 font-normal">Don't have an account  
+                <span 
+                onClick={() => {
+                    navigate("/signup")
+                } }
+                className="text-neutral-800 underline underline-offset-2 cursor-pointer ml-1.5">SignUp now</span>
+            </div>
+            </div>
+            </div>
 
-        </div>
+        
     )
 }

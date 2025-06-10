@@ -26,6 +26,7 @@ export const Signup = () => {
     }
     return (
         <div className="flex w-full min-h-screen justify-center items-center">
+            <div className="flex flex-col w-full justify-center items-center">
             <div className="flex flex-col max-w-md space-y-3 w-full p-4 bg-primary rounded-2xl border-neutral-200 border-[1px]">
                 <div className="font-semibold text-2xl tracking-tighter">
                     Signup recallr*
@@ -44,7 +45,13 @@ export const Signup = () => {
                     variant="primary"
                     size="md" />
             </div>
-
+            <div className="text-neutral-400 tracking-tighter mt-2 font-normal">already have an account 
+                <span 
+                onClick={() => {
+                    navigate("/signin")
+                } }
+                className="text-neutral-800 underline underline-offset-2 cursor-pointer ml-1.5">SignIn</span></div>
+            </div>
         </div>
     );
 }
