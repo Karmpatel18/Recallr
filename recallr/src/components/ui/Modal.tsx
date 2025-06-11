@@ -14,9 +14,29 @@ export const Modal = ({ onClose }: ModalProps) => {
     const [ type , SetType ] = useState(ContentType.Youtube);
     const titleRef = useRef<HTMLInputElement>(null);
     const linkRef = useRef<HTMLInputElement>(null);
-    function handleSubmit(){
+    async function handleSubmit(){
         const title = titleRef.current?.value;
         const link = linkRef.current?.value;
+        const token  = window.localStorage.getItem("token")
+        const contentType = "youtube";
+        const tag = "doc";
+        const response = await fetch(import.meta.env.VITE_BACKEND_API + "/content", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `${token}`
+
+            },
+            
+            body: JSON.stringify({
+                title: title,
+                link: link,
+                type: contentType,
+                tag: tag
+            }),
+        })
+        const data = await response.json();
+        console.log(data.message)
     }
     return (
         <div  onClick={onClose}  className="fixed h-screen w-full backdrop-blur-sm bg-neutral-800/10 justify-center items-center top-0 left-0 z-10">

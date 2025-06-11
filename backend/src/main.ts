@@ -88,7 +88,7 @@ app.post("/api/v1/content", authMiddleware , async (req,res) => {
         userId:req.userId,
         title,
         link,
-        tag: [],
+        tag,
         type
     })
     res.json({

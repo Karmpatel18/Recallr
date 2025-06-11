@@ -2,8 +2,8 @@ import HandArrow from '../components/icons/HandArrow';
 import Button from '../components/ui/Button'
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 function Home() {
     // const [isLoggedIn, setIsLoggedIn] = useState(false)
     // useEffect(() => {
@@ -16,6 +16,7 @@ function Home() {
     //     }
     // }, [])
     // console.log(isLoggedIn)
+    const navigate = useNavigate();
     const { isLoggedIn, loading } = useAuth();
 
     return (
@@ -28,7 +29,10 @@ function Home() {
                         text='Dashboard'
                         variant='primary'
                         endicon={<BsArrowRight size={22} />}
-                        size='md' />
+                        size='md'
+                        onClick={() => {
+                            navigate("/dashboard");
+                        }} />
                     ) : (<Button
                         text='Get Started'
                         variant='primary'
