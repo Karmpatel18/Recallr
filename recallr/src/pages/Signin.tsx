@@ -22,6 +22,7 @@ export const Signin = () => {
             }),
         })
         const data = await response.json();
+        console.log(data.send)
         if (response.ok) {
             localStorage.setItem('token', data.token); // Store JWT token
             console.log('Signed in successfully!');
