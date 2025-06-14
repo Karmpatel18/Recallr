@@ -8,7 +8,7 @@ function App() {
 
   return (
 
-    <div className='bg-secondary font-inter flex w-full  min-h-screen'>
+    <div className='bg-secondary font-manrope flex w-full  min-h-screen'>
         <Routes>
           <Route path='/' element={<Home />} />
 
