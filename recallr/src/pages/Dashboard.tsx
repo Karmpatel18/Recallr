@@ -37,7 +37,7 @@ export const Dashboard = () => {
                         <Button text='Add content' variant='primary' size='md' onClick={handleOpen} />
                     </div>
 
-                    <Card />
+                    <Card link={"https://youtu.be/UzJg19Z8nlg?si=qzvHfowRXuvCJVoN"} />
                     <blockquote className="twitter-tweet">
                         <a href="https://twitter.com/username/status/807811447862468608"></a>
                     </blockquote>

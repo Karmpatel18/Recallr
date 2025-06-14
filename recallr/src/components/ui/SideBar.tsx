@@ -1,28 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { PopModal } from "./PopModal";
 
 export const SideBar = () => {
     const [isPopModelOpen , setPopModelOpen ] = useState(false);
-    const [open , setOpen ] = useState(false);
     function handleModalClose(){
         setPopModelOpen(!isPopModelOpen)
     }
     function handleModalOpen(){
         setPopModelOpen(true)
     }
-    const navigate = useNavigate();
-    const handleLogout = () => {
-        try {
-            window.localStorage.removeItem("token");
-            navigate("/");
-            window.location.reload();
-        } catch (error) {
-            console.log(error)
-        }
-        
-
-    }
+    
 
     return (
         <div className={`h-full  bg-primary rounded-xl transition-all duration-300 p-4 w-60 border-[1px] border-[#D2D2D2] flex flex-col justify-between`}>
