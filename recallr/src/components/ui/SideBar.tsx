@@ -1,16 +1,28 @@
-// import { useState } from "react"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { PopModal } from "./PopModal";
+
 export const SideBar = () => {
-    // const [open, SetOpen] = useState(true)
-    // let openClass = "";
-    // if (open) {
-    //     openClass = "w-64"
-    // }
-    // else {
-    //     openClass = "w-fit"
-    // }
-    // function handleToggle() {
-    //     SetOpen(prev => !prev);
-    // }
+    const [isPopModelOpen , setPopModelOpen ] = useState(false);
+    const [open , setOpen ] = useState(false);
+    function handleModalClose(){
+        setPopModelOpen(!isPopModelOpen)
+    }
+    function handleModalOpen(){
+        setPopModelOpen(true)
+    }
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        try {
+            window.localStorage.removeItem("token");
+            navigate("/");
+            window.location.reload();
+        } catch (error) {
+            console.log(error)
+        }
+        
+
+    }
 
     return (
         <div className={`h-full  bg-primary rounded-xl transition-all duration-300 p-4 w-60 border-[1px] border-[#D2D2D2] flex flex-col justify-between`}>
@@ -25,7 +37,10 @@ export const SideBar = () => {
                 </div>
                 <div className="border-b-[1px] border-neutral-200 mt-4"></div>
             </div>
-            <div className="text-md tracking-tight text-red-600 transition-all hover:text-red-500 font-medium bg-primary hover:bg-secondary duration-200 rounded-md px-3 py-2 text-center cursor-pointer">Logout</div>
+            <div
+            onClick={handleModalOpen}
+            className="text-md tracking-tight text-red-600 transition-all hover:text-red-500 font-medium bg-primary hover:bg-secondary duration-200 rounded-md px-3 py-2 text-center cursor-pointer">Logout</div>
+            {isPopModelOpen ? <PopModal onClose={handleModalClose}/> : null}
         </div>
     )
 }

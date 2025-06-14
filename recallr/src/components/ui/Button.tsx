@@ -2,7 +2,7 @@ import type { ReactElement } from "react";
 import clsx from "clsx";
 
 interface ButtonProps {
-    variant?: "primary" | "secondary";
+    variant?: "primary" | "secondary" | "danger";
     size?: "sm" | "md" | "lg";
     text: string;
     starticon?: ReactElement;
@@ -27,7 +27,8 @@ function Button({
 
     const variantStyles = {
         primary: "bg-neutral-900 text-white hover:bg-neutral-800 border-[1px] border-neutral-900",
-        secondary: "bg-primary border-[1px] border-neutral-300 text-black hover:bg-secondary"
+        secondary: "bg-primary border-[1px] border-neutral-300 text-black hover:bg-secondary",
+        danger:"bg-red-500 border-[1px] border-red-200 text-white hover:bg-red-600"
     };
 
     const sizeStyles = {
