@@ -4,22 +4,25 @@ import { Card } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';
 import { SideBar } from '../components/ui/SideBar';
 import { useEffect, useState } from 'react';
-
+import { useAuth } from '../context/AuthContext';
 export const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([]);
 
     const handleOpen = () => setIsModalOpen(true);
     const handleClose = () => setIsModalOpen(false);
+    const { userId, token } = useAuth();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(import.meta.env.VITE_BACKEND_API + "/content", {
+                const response = await fetch(import.meta.env.VITE_BACKEND_API + `/content?userId=${userId}`, {
                     method: "GET",
                     headers: {
-                        'Authorization': `${window.localStorage.getItem("token")}`
-                    }
+                        'Authorization': `${token}`
+                        
+                    },
+                   
                 });
 
                 if (!response.ok) {

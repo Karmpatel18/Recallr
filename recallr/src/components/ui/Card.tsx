@@ -18,6 +18,7 @@ export const Card = (CardProps) => {
         </div>
     )
 }
-// src="https://www.youtube.com/embed/MzxXmjiE76E?si=39WFEDdvEIRrA7xe"
-//https://youtu.be/UzJg19Z8nlg?si=qzvHfowRXuvCJVoN
-//https://www.youtube.com/embed/UzJg19Z8nlg?si=qzvHfowRXuvCJVoN" 
+
+//https://www.youtube.com/watch?v=Eb7nBCG4r1M
+//https://youtu.be/Eb7nBCG4r1M?si=cRBTl5F5qjQBiyJi
+//https://www.youtube.com/embed/Eb7nBCG4r1M?si=cwmB8Fn8I2VOtKep

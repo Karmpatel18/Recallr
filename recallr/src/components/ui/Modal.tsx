@@ -2,6 +2,7 @@ import CloseIcon from "../icons/CloseIcon";
 import Button from "./Button";
 import { Input } from "./Input";
 import { useState , useRef } from "react";
+import { useAuth } from "../../context/AuthContext";
 interface ModalProps {
     onClose: () => void;
 }
@@ -14,6 +15,7 @@ export const Modal = ({ onClose }: ModalProps) => {
     const [ type , SetType ] = useState(ContentType.Youtube);
     const titleRef = useRef<HTMLInputElement>(null);
     const linkRef = useRef<HTMLInputElement>(null);
+    const { userId } = useAuth();
     async function handleSubmit(){
         const title = titleRef.current?.value;
         const link = linkRef.current?.value;
@@ -32,7 +34,8 @@ export const Modal = ({ onClose }: ModalProps) => {
                 title: title,
                 link: link,
                 type: contentType,
-                tag: tag
+                tag: tag,
+                userId
             }),
         })
         const data = await response.json();
