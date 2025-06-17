@@ -54,7 +54,8 @@ app.post("/api/v1/signin",async (req,res) => {
         }, process.env.JWT_SECRET)
     
         res.status(200).send({
-            token
+            token,
+            userId:userExists._id
         })
     }
     else{

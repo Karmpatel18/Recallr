@@ -28,7 +28,8 @@ export const Signin = () => {
             console.log(data.send)
             if (response.ok) {
                 toast.success("Sign-in successful!")
-                localStorage.setItem('token', data.token); // Store JWT token
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('userId',data.userId); // Store JWT token
                 console.log('Signed in successfully!');
                 
             } else {
