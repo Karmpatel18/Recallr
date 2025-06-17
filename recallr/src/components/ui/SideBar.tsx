@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { PopModal } from "./PopModal";
 
-export const SideBar = () => {
+interface SideBarProps{
+    username: string,
+}
+export const SideBar = (Props:SideBarProps) => {
     const [isPopModelOpen , setPopModelOpen ] = useState(false);
     function handleModalClose(){
         setPopModelOpen(!isPopModelOpen)
@@ -19,7 +22,7 @@ export const SideBar = () => {
                     </div>
                     <div className="flex flex-col">
                         <div className="font-semibold tracking-tighter text-2xl">Recallr</div>
-                        <div className="font-normal tracking-tight text-sm ">@username</div>
+                        <div className="font-medium tracking-normal text-md ">{Props.username}</div>
                     </div>
                 </div>
                 <div className="border-b-[1px] border-neutral-200 mt-4"></div>

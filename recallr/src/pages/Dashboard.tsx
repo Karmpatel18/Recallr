@@ -8,6 +8,7 @@ import { useAuth } from '../context/AuthContext';
 export const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([]);
+    const [ username , setUsername ] = useState("userone")
 
     const handleOpen = () => setIsModalOpen(true);
     const handleClose = () => setIsModalOpen(false);
@@ -31,6 +32,7 @@ export const Dashboard = () => {
 
                 const result = await response.json();
                 setData(result.content);
+                setUsername(result.username.username);
                 console.log(result) // result should be an array of content
             } catch (error) {
                 console.error(error);
@@ -38,12 +40,13 @@ export const Dashboard = () => {
         };
 
         fetchData();
-    }, []);
+    }, [userId]);
 
     return (
         <div className='flex w-full min-h-screen p-2'>
             <div className='flex w-full'>
-                <SideBar />
+                <SideBar username={username}/>
+                
                 <div className='ml-4 flex flex-col w-full h-min'>
                     <div className='flex gap-2 flex-row-reverse'>
                         <Button text='share' variant='secondary' endicon={<ShareIcon />} size='md' />
@@ -52,11 +55,14 @@ export const Dashboard = () => {
                     <div className='flex max-w-full w-full flex-wrap gap-3'>
                     {/* Render Cards dynamically if data is available */}
                     {data.map((item, index) => (
-                        <Card key={index} title={item.title} link={item.link} />
+                        <Card 
+                        key={index} 
+                        title={item.title} 
+                        link={item.link}
+                        />
                     ))}
                     </div>
-                    {/* Static example card */}
-                    <Card link={"https://youtu.be/UzJg19Z8nlg?si=qzvHfowRXuvCJVoN"} />
+                    
 
                     <blockquote className="twitter-tweet">
                         <a href="https://twitter.com/username/status/807811447862468608"></a>

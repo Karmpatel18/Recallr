@@ -68,13 +68,16 @@ app.post("/api/v1/signin",async (req,res) => {
 app.get("/api/v1/content",authMiddleware, async (req,res) => {
     // @ts-ignore
     const userId = req.query.userId;
-    console.log(userId)
+    
     const content = await contentModal.find({
         userId:userId
     }).populate("userId","username")
 
+    const username = await userModal.findById(userId).select("username");
+
     res.json({
-        content
+        content,
+        username
     })
     
 })
