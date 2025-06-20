@@ -2,7 +2,7 @@ import HandArrow from '../components/icons/HandArrow';
 import Button from '../components/ui/Button'
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 import { useNavigate } from 'react-router-dom';
 function Home() {
     // const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -17,14 +17,14 @@ function Home() {
     // }, [])
     // console.log(isLoggedIn)
     const navigate = useNavigate();
-    const { isLoggedIn, loading } = useAuth();
+    const {  token } = useAuth();
 
     return (
         <div className='flex flex-col min-h-screen w-full'>
             <div className='flex w-full justify-between px-10 py-4 h-min items-center'>
                 <div className='font-semibold tracking-wider text-lg'>RECALLR</div>
                 <div className='flex gap-2'>
-                    {isLoggedIn ? (
+                    {token ? (
                         <Button
                         text='Dashboard'
                         variant='primary'
@@ -39,7 +39,7 @@ function Home() {
                         endicon={<BsArrowRight size={22} />}
                         size='md' />)
                     }
-                    {!isLoggedIn ? (<Link to="/signup">
+                    {!token ? (<Link to="/signup">
                         <div>
                             <Button 
                             text='Login' 

@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/Input";
 import Button from "../components/ui/Button";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { toast } from 'react-toastify';
+import { useAuth } from "../context/useAuth";
 
 export const Signin = () => {
     const usernameRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
-    
+    const { login } = useAuth();
     const navigate = useNavigate();
-
+    
+    
     async function handleSignin() {
         try {
             const username = usernameRef.current?.value;
@@ -28,15 +30,17 @@ export const Signin = () => {
             console.log(data.send)
             if (response.ok) {
                 toast.success("Sign-in successful!")
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('userId',data.userId); // Store JWT token
+                login(data.userId, data.token);
+                
                 console.log('Signed in successfully!');
+                navigate("/dashboard")
                 
             } else {
                 toast.error(data.message || "Something went wrong");
                 console.error('Error:', data.message);
             }
-            navigate("/dashboard")
+            
+            // window.location.reload();
         }
 
         catch (err) {
@@ -59,11 +63,11 @@ export const Signin = () => {
                     <Input
                         ref={usernameRef}
                         placeholder="username"
-                        label="username" />
+                        label="username"  />
                     <Input
                         ref={passwordRef}
                         placeholder="password"
-                        label="password" />
+                        label="password"  />
                     <Button
                         onClick={handleSignin}
                         text="Signin"

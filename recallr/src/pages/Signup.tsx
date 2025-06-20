@@ -32,13 +32,13 @@ export const Signup = () => {
                     Signup recallr*
                 </div>
                 <Input
-                    ref={usernameRef}
-                    placeholder="username"
-                    label="username" />
+                        ref={usernameRef}
+                        placeholder="username"
+                        label="username" />
                 <Input
-                    ref={passwordRef}
-                    placeholder="password"
-                    label="password" />
+                        ref={passwordRef}
+                        placeholder="password"
+                        label="password" />
                 <Button
                     onClick={handleSignup}
                     text="Signup"

@@ -3,7 +3,6 @@ interface InputProps {
     label?: string;
     type?: string;
     placeholder?: string;
-    value: string;
     disabled?: boolean;
     required?: boolean;
     name?: string;
@@ -16,7 +15,6 @@ export const Input = (
         label,
         type = "text",
         placeholder = "",
-        value,
         disabled = false,
         required = false,
         name,
@@ -32,7 +30,6 @@ export const Input = (
                 name={name}
                 type={type}
                 placeholder={placeholder}
-                value={value}
                 disabled={disabled}
                 required={required}
                 className={`border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-800 ${className}`}

@@ -4,7 +4,7 @@ import { Card } from '../components/ui/Card';
 import { Modal } from '../components/ui/Modal';
 import { SideBar } from '../components/ui/SideBar';
 import { useEffect, useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/useAuth';
 export const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([]);
@@ -15,6 +15,11 @@ export const Dashboard = () => {
     const { userId, token } = useAuth();
 
     useEffect(() => {
+        if (!userId || !token) return
+
+        setData([]);
+        setUsername("userone");
+
         const fetchData = async () => {
             try {
                 const response = await fetch(import.meta.env.VITE_BACKEND_API + `/content?userId=${userId}`, {
@@ -40,7 +45,12 @@ export const Dashboard = () => {
         };
 
         fetchData();
-    }, [userId]);
+
+
+        
+    }, [userId, token]);
+
+    
 
     return (
         <div className='flex w-full min-h-screen p-2'>
@@ -57,7 +67,9 @@ export const Dashboard = () => {
                     {data.map((item, index) => (
                         <Card 
                         key={index} 
+                        //@ts-expect-error typeError
                         title={item.title} 
+                        //@ts-expect-error typeError
                         link={item.link}
                         />
                     ))}

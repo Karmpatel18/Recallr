@@ -2,7 +2,7 @@ import CloseIcon from "../icons/CloseIcon";
 import Button from "./Button";
 import { Input } from "./Input";
 import { useState , useRef } from "react";
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 interface ModalProps {
     onClose: () => void;
 }
