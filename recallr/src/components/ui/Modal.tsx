@@ -6,7 +6,7 @@ import { useAuth } from "../../context/useAuth";
 interface ModalProps {
     onClose: () => void;
 }
-
+//@ts-expect-error defined enum
 enum ContentType {
     Youtube="youtube",
     Twitter="twitter"
