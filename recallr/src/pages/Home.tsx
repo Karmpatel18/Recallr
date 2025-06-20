@@ -5,14 +5,51 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
 import { useNavigate } from 'react-router-dom';
 // import { HiPlay } from "react-icons/hi";
-import { TbShieldHeart } from "react-icons/tb";
-import Line from '../components/icons/Line';
+// import Line from '../components/icons/Line';
 import { FaGithub } from "react-icons/fa";
-
+// import { HeroCard } from '../components/ui/HeroCard';
+import { FaRocket, FaLink } from "react-icons/fa";
+import { MdOutlineHistory, } from "react-icons/md";
+import { BsLightningChargeFill } from "react-icons/bs";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "../components/ui/accordion"
 function Home() {
 
     const navigate = useNavigate();
     const { token } = useAuth();
+
+    const data = {
+        feature1: {
+            title: "Quick Capture",
+            description: "Capture notes, thoughts, and links in an instant — without breaking your flow.",
+            heroicon: <BsLightningChargeFill size={24} />,
+
+        },
+        feature2: {
+            title: "Connect Your Thoughts",
+            description: "Link related ideas automatically or manually to build your knowledge graph.",
+            heroicon: <FaLink size={24} />,
+
+        },
+        feature3: {
+            title: "Daily Recall",
+            description: "Revisit what you captured yesterday to improve retention and reflection.",
+            heroicon: <MdOutlineHistory size={24} />,
+
+        },
+        feature4: {
+            title: "Fast & Minimal",
+            description: "Built with speed and focus in mind. No clutter, just clarity.",
+            heroicon: <FaRocket size={24} />,
+
+        }
+    }
+
+
 
     return (
         <div className='flex flex-col min-h-screen w-full'>
@@ -46,7 +83,7 @@ function Home() {
 
                 </div>
             </div>
-            <div className='h-[1216px] overflow-hidden border-b-[1px] border-neutral-200 '>
+            <div className='h-[1140px] overflow-hidden border-b-[1px] border-neutral-200 '>
                 <div className='relative h-screen -mt-[1px] '>
                     <svg
                         className="absolute inset-0  text-neutral-200"
@@ -72,7 +109,7 @@ function Home() {
                             <Button text='Developer' variant='secondary' size='md' />
                         </div>
                         <div className='mt-24 '>
-                            <div className='relative flex w-[1012px] h-[624px] ring-[20px] ring-neutral-800 rounded-4xl justify-center items-center shadow-2xl z-0 overflow-hidden'>
+                            <div className='relative flex w-[1012px] h-[624px] ring-[20px] ring-neutral-800 rounded-4xl justify-center items-center shadow-2xl z-0 overflow-hidden bg-neutral-800'>
                                 {/* <div className='absolute z-40'>
                                     <HiPlay size={68}/>
                                     
@@ -83,8 +120,8 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className='flex w-full justify-center items-center h-auto overflow-clip relative  gap-8 flex-col'>
-                <div className='bg-neutral-100/20  rounded-4xl w-[460px]  p-8 z-60 border-[1px] border-neutral-200 mt-12'>
+            {/* <div className='flex w-full justify-center items-center h-auto overflow-clip relative  gap-8 flex-col'>
+                <div className='bg-neutral-100  rounded-4xl w-[470px]  p-6 z-60 border-[1px] border-neutral-200 mt-12 backdrop-blur-3xl'>
                     <span className='bg-neutral-50'>
                         <div className='relative'>
                             <div className=' mb-12 text-xl font-medium  tracking-tighter'>What will you get?</div>
@@ -94,56 +131,74 @@ function Home() {
                         </div>
                         <div className='flex flex-col'>
                             <div className='flex mb-6'>
-                                <div className='flex flex-col w-full gap-3 flex-wrap'>
-
-                                    <div className='flex gap-3'>
-                                        <div className='max-w-[192px] w-full flex rounded-lg bg-neutral-100/30 flex-col p-3.5 border-[1px] border-neutral-200'>
-                                            <TbShieldHeart size={28} className='text-purple-600 mb-2' />
-                                            <div className='text-md tracking-tight text-neutral-800 font-medium mb-1.5'>Super like</div>
-                                            <p className='text-[13px] tracking-tight text-neutral-400 font-normal'>Highlight your interest instantly.</p>
-                                        </div>
-
-                                        <div className='max-w-[192px] border-[1px] border-neutral-200 w-full flex rounded-lg bg-neutral-100/30 flex-col p-3.5 '>
-                                            <TbShieldHeart size={28} className='text-purple-600 mb-2' />
-                                            <div className='text-md tracking-tight text-neutral-800 font-medium mb-1.5'>Super like</div>
-                                            <p className='text-[13px] tracking-tight text-neutral-400 font-normal'>Highlight your interest instantly.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="flex gap-3">
-                                        <div className='border-[1px] border-neutral-200 max-w-[192px] w-full flex rounded-lg bg-neutral-100/30 flex-col p-3.5 '>
-                                            <TbShieldHeart size={28} className='text-purple-600 mb-2' />
-                                            <div className='text-md tracking-tight text-neutral-800 font-medium mb-1.5'>Super like</div>
-                                            <p className='text-[13px] tracking-tight text-neutral-400 font-normal'>Highlight your interest instantly.</p>
-                                        </div>
-
-                                        <div className='border-[1px] border-neutral-200 max-w-[192px] w-full flex rounded-lg bg-neutral-100/30 flex-col p-3.5 hover:bg-neutral-100/40 transition-all duration-200'>
-                                            <TbShieldHeart size={28} className='text-purple-600 mb-2' />
-                                            <div className='text-md tracking-tight text-neutral-800 font-medium mb-1.5'>Super like</div>
-                                            <p className='text-[13px] tracking-tight text-neutral-400 font-normal'>Highlight your interest instantly.</p>
-                                        </div>
+                                <div className='flex flex-row  gap-3 flex-wrap w-full'>
+                                        {Object.entries(data).map(([key, { title, description, heroicon }]) => (
+                                            <HeroCard
+                                                key={key}
+                                                title={title}
+                                                description={description}
+                                                heroicon={heroicon}
+                                            />
+                                        ))}
                                     </div>
                                 </div>
-                            </div>
-
                             <Button text='Checkout now' variant='primary' size='md' />
                         </div>
                     </span>
                 </div>
 
-                <div className='py-4 px-10 border-[1px]  border-neutral-200 text-[13px] w-full flex  text-neutral-800 bg-neutral-100 items-center gap-2 justify-between font-normal'>
-                    <div>
-                        <span className='tracking-wider'>RECALLR</span>&copy; 2025
-                    </div>
-                    <div><Button variant='secondary' text='Github' starticon={<FaGithub />} /></div>
-                </div>
+                
 
                 <div className='absolute  z-50 gap-3   '>
                     <div className='h-44 w-44 bg-blue-400 rounded-full blur-[100px] mr-44'></div>
                     <div className='h-44 w-44 bg-purple-400 rounded-full blur-[100px] mb-20'></div>
                     <div className='h-44 w-44 bg-pink-500 rounded-full blur-[100px] ml-44'></div>
+                </div> 
+            </div>
+            */}
+            <div className='flex w-full justify-center mt-12'>
+            <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    What our product provides 
+                </h2>
+                </div>
+            <div className='flex w-full justify-center items-center p-12'>
+                
+                <div className='w-full max-w-3xl'>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-1" className='border-neutral-300'>
+                            <AccordionTrigger>Quick Capture</AccordionTrigger>
+                            <AccordionContent>
+                                Capture notes, thoughts, and links in an instant — without breaking your flow.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-2" className='border-neutral-300'>
+                            <AccordionTrigger>Daily Recall</AccordionTrigger>
+                            <AccordionContent>
+                                Revisit what you captured yesterday to improve retention and reflection.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-3" className='border-neutral-300'>
+                            <AccordionTrigger>Fast & Minimal</AccordionTrigger>
+                            <AccordionContent>
+                                Built with speed and focus in mind. No clutter, just clarity.
+                            </AccordionContent>
+                        </AccordionItem>
+                        <AccordionItem value="item-4" className='border-neutral-300'>
+                            <AccordionTrigger>Connect Your Thoughts</AccordionTrigger>
+                            <AccordionContent>
+                                Link related ideas automatically or manually to build your knowledge graph.
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
                 </div>
             </div>
+            <div className='py-4 px-10 border-[1px]  border-neutral-200 text-[13px] w-full flex  text-neutral-800 bg-neutral-100 items-center gap-2 justify-between font-normal'>
+                <div>
+                    <span className='tracking-wider'>RECALLR</span>&copy; 2025
+                </div>
+                <div><Button variant='secondary' text='Github' starticon={<FaGithub />} /></div>
+            </div>
+
 
         </div>
 
