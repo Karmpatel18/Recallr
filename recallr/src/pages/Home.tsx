@@ -8,9 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // import Line from '../components/icons/Line';
 import { FaGithub } from "react-icons/fa";
 // import { HeroCard } from '../components/ui/HeroCard';
-import { FaRocket, FaLink } from "react-icons/fa";
-import { MdOutlineHistory, } from "react-icons/md";
-import { BsLightningChargeFill } from "react-icons/bs";
+
 import {
     Accordion,
     AccordionContent,
@@ -22,33 +20,8 @@ function Home() {
     const navigate = useNavigate();
     const { token } = useAuth();
 
-    const data = {
-        feature1: {
-            title: "Quick Capture",
-            description: "Capture notes, thoughts, and links in an instant — without breaking your flow.",
-            heroicon: <BsLightningChargeFill size={24} />,
-
-        },
-        feature2: {
-            title: "Connect Your Thoughts",
-            description: "Link related ideas automatically or manually to build your knowledge graph.",
-            heroicon: <FaLink size={24} />,
-
-        },
-        feature3: {
-            title: "Daily Recall",
-            description: "Revisit what you captured yesterday to improve retention and reflection.",
-            heroicon: <MdOutlineHistory size={24} />,
-
-        },
-        feature4: {
-            title: "Fast & Minimal",
-            description: "Built with speed and focus in mind. No clutter, just clarity.",
-            heroicon: <FaRocket size={24} />,
-
-        }
-    }
-
+    
+    
 
 
     return (
