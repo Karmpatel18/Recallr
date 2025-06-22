@@ -3,6 +3,8 @@ import Button from "./Button";
 import { Input } from "./Input";
 import { useState , useRef } from "react";
 import { useAuth } from "../../context/useAuth";
+import { toast } from 'react-toastify';
+
 interface ModalProps {
     onClose: () => void;
 }
@@ -20,8 +22,7 @@ export const Modal = ({ onClose }: ModalProps) => {
         const title = titleRef.current?.value;
         const link = linkRef.current?.value;
         const token  = window.localStorage.getItem("token")
-        const contentType = "youtube";
-        const tag = "doc";
+        const tag = ["doc"];
         const response = await fetch(import.meta.env.VITE_BACKEND_API + "/content", {
             method: 'POST',
             headers: {
@@ -33,13 +34,20 @@ export const Modal = ({ onClose }: ModalProps) => {
             body: JSON.stringify({
                 title: title,
                 link: link,
-                type: contentType,
-                tag: tag,
+                type: type,
+                tags: tag,
                 userId
             }),
         })
         const data = await response.json();
         console.log(data.message)
+        if(response.ok){
+            onClose();
+            toast.success("Content successfully added")
+        }
+        else{
+            toast.error("error adding content")
+        }
     }
     return (
         <div  onClick={onClose}  className="fixed h-screen w-full backdrop-blur-sm bg-neutral-800/10 justify-center items-center top-0 left-0 z-10">
