@@ -10,17 +10,18 @@ function App() {
 
   return (
 
-    <div className='bg-secondary font-manrope flex w-full  min-h-screen'>
+    <div className='bg-secondary font-manrope flex w-full h-screen'>
       <Routes>
         <Route path='/' element={<Home />} />
 
 
-        <Route path="/signup" element={<Signup />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='/signin' element={<Signin />} />
         <Route
           path="/dashboard"
           element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
         />
+        <Route path='*' element={<div className='flex w-full justify-center items-center text-[10px] font-normal tracking-tight text-neutral-400'>404 page doesn't exists</div>}/>
 
       </Routes>
       <ToastContainer 

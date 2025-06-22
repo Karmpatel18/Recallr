@@ -15,7 +15,7 @@ export const SideBar = (Props:SideBarProps) => {
     
 
     return (
-        <div className={`h-full  bg-primary rounded-xl transition-all duration-300 p-4 w-60 border-[1px] border-[#D2D2D2] flex flex-col justify-between`}>
+        <div className={`h-full max-h-screen  bg-primary rounded-xl transition-all duration-300 p-4 w-60 border-[1px] border-[#D2D2D2] flex flex-col justify-between`}>
             <div className="flex flex-col">
                 <div className="flex space-x-2 items-center">
                     <div className="bg-pink-300 w-12 h-12 rounded-lg">

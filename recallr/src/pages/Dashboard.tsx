@@ -61,16 +61,16 @@ export const Dashboard = () => {
     
 
     return (
-        <div className='flex w-full min-h-screen p-2'>
+        <div className='flex w-full  p-2 '>
             <div className='flex w-full'>
                 <SideBar username={username}/>
                 
-                <div className='ml-4 flex flex-col w-full h-min'>
-                    <div className='flex gap-2 flex-row-reverse'>
+                <div className='ml-4 flex flex-col w-full h-auto'>
+                    <div className='flex gap-2 flex-row-reverse h-min'>
                         <Button text='share' variant='secondary' endicon={<ShareIcon />} size='md' />
                         <Button text='Add content' variant='primary' size='md' onClick={handleOpen} />
                     </div>
-                    <div className='flex max-w-full w-full flex-wrap gap-3 mt-4'>
+                    <div className='flex max-w-full w-full flex-wrap gap-3 mt-4 overflow-y-scroll h-min'>
                     {/* Render Cards dynamically if data is available */}
                     {data.map((item, index) => (
                         <Card 
@@ -79,14 +79,18 @@ export const Dashboard = () => {
                         title={item.title} 
                         //@ts-expect-error typeError
                         link={item.link}
+                        //@ts-expect-error typeError
+                        type={item.type}
+                        createdAt={item.createdAt}
                         />
                     ))}
+                    <blockquote className="twitter-tweet h-min w-min">
+                        <a href="https://twitter.com/username/status/807811447862468608"></a>
+                    </blockquote>
                     </div>
                     
 
-                    <blockquote className="twitter-tweet">
-                        <a href="https://twitter.com/username/status/807811447862468608"></a>
-                    </blockquote>
+                    
                 </div>
             </div>
 
