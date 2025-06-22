@@ -36,7 +36,7 @@ const contentSchema = new mongoose.Schema({
   title: { type: String, required: true },
   link: { type: String, required: true },
   type: { type: String, enums: [contentTypes], required: true },
-  tags: [{ type: Types.ObjectId, ref: 'Tag' }],
+  tags: [{ type: String, ref: 'Tag' }],
   userId: { type: Types.ObjectId, ref: 'User', required: true },
 })
 

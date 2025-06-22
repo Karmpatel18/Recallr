@@ -85,7 +85,7 @@ app.get("/api/v1/content",authMiddleware, async (req,res) => {
 app.post("/api/v1/content", authMiddleware , async (req,res) => {
     const title = req.body.title;
     const link = req.body.link;
-    const tag = req.body.tag;
+    const tags = req.body.tags;
     const type = req.body.type;
 
     await contentModal.create({
@@ -93,7 +93,7 @@ app.post("/api/v1/content", authMiddleware , async (req,res) => {
         userId:req.userId,
         title,
         link,
-        tag,
+        tags,
         type
     })
     res.json({
