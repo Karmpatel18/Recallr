@@ -37,8 +37,8 @@ const contentSchema = new mongoose.Schema({
   link: { type: String, required: true },
   type: { type: String, enums: [contentTypes], required: true },
   tags: [{ type: String, ref: 'Tag' }],
-  userId: { type: Types.ObjectId, ref: 'User', required: true },
-})
+  userId: { type: Types.ObjectId, ref: 'User', required: true }
+}, { timestamps: true })
 
 export const contentModal = model('content', contentSchema);
 

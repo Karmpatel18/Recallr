@@ -1,88 +1,86 @@
 
 import dotenv from 'dotenv';
 dotenv.config();
-import { userModal , contentModal } from './db';
+import { userModal, contentModal } from './db';
 import express from "express"
 import jwt from 'jsonwebtoken'
+import { authMiddleware } from './authMiddleware';
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT
-import { authMiddleware } from './authMiddleware';
-
 
 app.use(cors());
 
 app.use(express.json());
 
-app.post("/api/v1/signup", async(req,res) => {
+app.post("/api/v1/signup", async (req, res) => {
 
-    const { username , password } = req.body;
-    
-    try{
-    await userModal.create({
-        username: username,
-        password: password 
-    })
-    res.json({
-        message:"user signed up successfully"
-    })
+    const { username, password } = req.body;
+
+    try {
+        await userModal.create({
+            username: username,
+            password: password
+        })
+        res.json({
+            message: "user signed up successfully"
+        })
     }
-    catch(e: any){
+    catch (e: any) {
         if (e.code === 11000) {
             res.status(409).json({
-                message:`user exists`
+                message: `user exists`
             })
         } else {
             res.status(500).json({
-            message: `error occurred : ${e}`
+                message: `error occurred : ${e}`
             })
         }
     }
 })
-app.post("/api/v1/signin",async (req,res) => {
+app.post("/api/v1/signin", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const userExists = await userModal.findOne({
         username,
         password
     })
-    
-    if( userExists ){
+
+    if (userExists) {
         const token = jwt.sign({
-            id:userExists._id
-            
+            id: userExists._id
+
         }, process.env.JWT_SECRET)
-    
+
         res.status(200).send({
             token,
-            userId:userExists._id
+            userId: userExists._id
         })
     }
-    else{
+    else {
         res.status(403).send({
-            message:"incorrect credentials"
+            message: "incorrect credentials"
         })
     }
 })
 
-app.get("/api/v1/content",authMiddleware, async (req,res) => {
+app.get("/api/v1/content", authMiddleware, async (req, res) => {
     // @ts-ignore
     const userId = req.query.userId;
-    
-    const content = await contentModal.find({
-        userId:userId
-    }).populate("userId","username")
 
+    const content = await contentModal.find({
+        userId: userId
+    }).populate("userId", "username");
     const username = await userModal.findById(userId).select("username");
 
     res.json({
         content,
-        username
+        username,
     })
-    
+
 })
 
-app.post("/api/v1/content", authMiddleware , async (req,res) => {
+app.post("/api/v1/content", authMiddleware, async (req, res) => {
     const title = req.body.title;
     const link = req.body.link;
     const tags = req.body.tags;
@@ -90,30 +88,30 @@ app.post("/api/v1/content", authMiddleware , async (req,res) => {
 
     await contentModal.create({
         //@ts-ignore
-        userId:req.userId,
+        userId: req.userId,
         title,
         link,
         tags,
         type
     })
     res.json({
-        message:"content added"
+        message: "content added"
     })
 })
 
-app.delete("/api/v1/content", authMiddleware ,async (req,res) => {
+app.delete("/api/v1/content", authMiddleware, async (req, res) => {
     const contentId = req.body.contentId;
 
     await contentModal.deleteMany({
         //@ts-ignore
-        userId:req.userId,
+        userId: req.userId,
         contentId
     })
     res.json({
-        message:"deleted"
+        message: "deleted"
     })
 })
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
-    });;
+});;
