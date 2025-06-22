@@ -9,7 +9,7 @@ export const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [data, setData] = useState([]);
     const [ username , setUsername ] = useState("userone")
-
+    const [ loading , setLoading] = useState(true);
     const handleOpen = () => setIsModalOpen(true);
     const handleClose = () => setIsModalOpen(false);
     const { userId, token } = useAuth();
@@ -28,7 +28,6 @@ export const Dashboard = () => {
                         'Authorization': `${token}`
                         
                     },
-                   
                 });
 
                 if (!response.ok) {
@@ -36,6 +35,9 @@ export const Dashboard = () => {
                 }
 
                 const result = await response.json();
+                if(result){
+                    setLoading(false);
+                }
                 setData(result.content);
                 setUsername(result.username.username);
                 console.log(result) // result should be an array of content
@@ -49,6 +51,12 @@ export const Dashboard = () => {
 
         
     }, [userId, token]);
+    if(loading){
+        return(<div className='flex w-full gap-3 m-3 animate-pulse'>
+            <div className='flex-1/4 w-full  bg-gradient-to-tl from-neutral-200/80 via-neutral-200 to-neutral-600/40 rounded-lg'></div>
+            <div className='flex-3/4 w-full  bg-gradient-to-br from-neutral-200/80 via-neutral-200 to-neutral-600/40 rounded-lg'></div>
+        </div>)
+    }
 
     
 
@@ -62,7 +70,7 @@ export const Dashboard = () => {
                         <Button text='share' variant='secondary' endicon={<ShareIcon />} size='md' />
                         <Button text='Add content' variant='primary' size='md' onClick={handleOpen} />
                     </div>
-                    <div className='flex max-w-full w-full flex-wrap gap-3'>
+                    <div className='flex max-w-full w-full flex-wrap gap-3 mt-4'>
                     {/* Render Cards dynamically if data is available */}
                     {data.map((item, index) => (
                         <Card 

@@ -78,7 +78,16 @@ function Home() {
                             <HandArrow />
                         </div>
                         <div className='flex mt-6 gap-2'>
-                            <Button text='Get Started' variant='primary' size='md' />
+                            <Button text='Get Started' variant='primary' size='md' onClick={
+                                () => {
+                                    if(token){
+                                        navigate("dashboard")
+                                    }
+                                    else{
+                                        navigate("signin")
+                                    }
+                                }
+                            }/>
                             <Button text='Developer' variant='secondary' size='md' />
                         </div>
                         <div className='mt-24 '>
