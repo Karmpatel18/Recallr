@@ -5,6 +5,13 @@ import { Modal } from '../components/ui/Modal';
 import { SideBar } from '../components/ui/SideBar';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/useAuth';
+import Masonry from 'react-masonry-css';
+
+const breakpointColumnsObj = {
+  default: 3,
+  768: 2,
+  480: 1,
+};
 export const Dashboard = () => {
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ data, setData ] = useState([]);
@@ -61,17 +68,22 @@ export const Dashboard = () => {
     
 
     return (
-        <div className='flex w-full  p-2 '>
+        <div className='flex w-full  m-2 '>
             <div className='flex w-full'>
                 <SideBar username={username}/>
                 
-                <div className='ml-4 flex flex-col w-full h-auto'>
+                <div className=' flex flex-col w-full h-auto ml-64'>
                     <div className='flex gap-2 flex-row-reverse h-min'>
                         <Button text='share' variant='secondary' endicon={<ShareIcon />} size='md' />
                         <Button text='Add content' variant='primary' size='md' onClick={handleOpen} />
                     </div>
-                    <div className='flex max-w-full w-full flex-wrap gap-3 mt-4 overflow-y-scroll h-min'>
+                    {/* <div className=' gap-3 mt-4 overflow-y-scroll columns-1 sm:columns-2 md:columns-3  h-[1200px]'> */}
                     {/* Render Cards dynamically if data is available */}
+                    <Masonry
+  breakpointCols={breakpointColumnsObj}
+  className="flex  mt-6 gap-3  w-[1118px]"
+  columnClassName="space-y-4 "
+>
                     {data.map((item, index) => (
                         <Card 
                         key={index} 
@@ -81,13 +93,13 @@ export const Dashboard = () => {
                         link={item.link}
                         //@ts-expect-error typeError
                         type={item.type}
+                        //@ts-expect-error typeError
                         createdAt={item.createdAt}
                         />
                     ))}
-                    <blockquote className="twitter-tweet h-min w-min">
-                        <a href="https://twitter.com/username/status/807811447862468608"></a>
-                    </blockquote>
-                    </div>
+                    </Masonry>
+                    
+                    {/* </div> */}
                     
 
                     

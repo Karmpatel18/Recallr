@@ -113,24 +113,24 @@ app.delete("/api/v1/content", authMiddleware, async (req, res) => {
 })
 
 
-app.get("/api/v1/share/:id", authMiddleware, async (req, res) => {
-    try{
-    const shareHash = req.params.id;
-    const shared = await linkModal.findOne({ shareHash });
+// app.get("/api/v1/share/:id", authMiddleware, async (req, res) => {
+//     try{
+//     const shareHash = req.params.id;
+//     const shared = await linkModal.findOne({ shareHash });
 
-    if (!shared) {
-        res.status(404).json({ message: "Shared content not found" });
-    }
+//     if (!shared) {
+//         res.status(404).json({ message: "Shared content not found" });
+//     }
 
-    res.status(200).json({
-        content: shared.content
-    });
-    }catch(e){
-        res.status(404).json({
-            message: "internal server Error"
-        })
-    }
-})
+//     res.status(200).json({
+//         content: shared.content
+//     });
+//     }catch(e){
+//         res.status(404).json({
+//             message: "internal server Error"
+//         })
+//     }
+// })
 
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
