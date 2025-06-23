@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import { useRef } from "react";
+import { toast } from "react-toastify";
 export const Signup = () => {
     const navigate = useNavigate();
     const usernameRef = useRef<HTMLInputElement>(null);
@@ -20,6 +21,12 @@ export const Signup = () => {
                     password: password,
                 }),
             })
+            if(response.ok){
+                toast.success("signed up successfully")
+            }
+            else{
+                toast.error("error while signing up")
+            }
         const data = await response.json();
         console.log('Response:', data);
         navigate("/signin")
