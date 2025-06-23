@@ -1,7 +1,7 @@
 
 import dotenv from 'dotenv';
 dotenv.config();
-import { userModal, contentModal } from './db';
+import { userModal, contentModal, linkModal } from './db';
 import express from "express"
 import jwt from 'jsonwebtoken'
 import { authMiddleware } from './authMiddleware';
@@ -110,6 +110,26 @@ app.delete("/api/v1/content", authMiddleware, async (req, res) => {
     res.json({
         message: "deleted"
     })
+})
+
+
+app.get("/api/v1/share/:id", authMiddleware, async (req, res) => {
+    try{
+    const shareHash = req.params.id;
+    const shared = await linkModal.findOne({ shareHash });
+
+    if (!shared) {
+        res.status(404).json({ message: "Shared content not found" });
+    }
+
+    res.status(200).json({
+        content: shared.content
+    });
+    }catch(e){
+        res.status(404).json({
+            message: "internal server Error"
+        })
+    }
 })
 
 app.listen(port, () => {

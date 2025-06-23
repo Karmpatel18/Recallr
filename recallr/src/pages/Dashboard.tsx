@@ -6,10 +6,10 @@ import { SideBar } from '../components/ui/SideBar';
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/useAuth';
 export const Dashboard = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [data, setData] = useState([]);
+    const [ isModalOpen, setIsModalOpen ] = useState(false);
+    const [ data, setData ] = useState([]);
     const [ username , setUsername ] = useState("userone")
-    const [ loading , setLoading] = useState(true);
+    const [ loading , setLoading ] = useState(true);
     const handleOpen = () => setIsModalOpen(true);
     const handleClose = () => setIsModalOpen(false);
     const { userId, token } = useAuth();
