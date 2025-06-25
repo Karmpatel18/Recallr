@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 interface ModalProps {
     onClose: () => void;
 }
-//@ts-expect-error defined enum
+//@ts-expect-error defined
 enum ContentType {
     Youtube="youtube",
     Twitter="twitter"
@@ -27,7 +27,7 @@ export const Modal = ({ onClose }: ModalProps) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `${token}`
+                'Authorization': `Bearer ${token}`,
 
             },
             

@@ -2,17 +2,22 @@ import { useState } from "react";
 import { PopModal } from "./PopModal";
 import { SiCampaignmonitor } from "react-icons/si";
 import { TbArrowBarToRight } from "react-icons/tb";
+import { useNavigate } from 'react-router-dom';
 
 interface SideBarProps{
     username: string,
 }
 export const SideBar = (Props:SideBarProps) => {
     const [isPopModelOpen , setPopModelOpen ] = useState(false);
+    const navigate = useNavigate();
     function handleModalClose(){
         setPopModelOpen(!isPopModelOpen)
     }
     function handleModalOpen(){
         setPopModelOpen(true)
+    }
+    function handleChatClick() {
+        navigate('/chat-brain');
     }
     
 
@@ -29,7 +34,7 @@ export const SideBar = (Props:SideBarProps) => {
                     </div>
                 </div>
                 <div className="border-b-[1px] border-neutral-200 mt-4"></div>
-            <div className="flex items-center bg-secondary cursor-pointer mt-2 rounded-md text-md font-medium tracking-tighter py-2 px-3 justify-between hover:bg-neutral-800 hover:text-neutral-50 transition-all duration-200 group">Chat with your brain<TbArrowBarToRight className="group-hover:scale-105"/></div>
+            <div className="flex items-center bg-secondary cursor-pointer mt-2 rounded-md text-md font-medium tracking-tighter py-2 px-3 justify-between hover:bg-neutral-800 hover:text-neutral-50 transition-all duration-200 group" onClick={handleChatClick}>Chat with your brain<TbArrowBarToRight className="group-hover:scale-105"/></div>
             </div>
             <div
             onClick={handleModalOpen}

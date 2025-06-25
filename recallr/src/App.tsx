@@ -6,6 +6,8 @@ import { Signin } from './pages/Signin'
 import { ProtectedRoute } from './pages/ProtectedRoute'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ChatBrain from './pages/ChatBrain';
+
 function App() {
 
   return (
@@ -25,6 +27,10 @@ function App() {
         <Route
           path="/dashboard"
           element={<ProtectedRoute><Dashboard /></ProtectedRoute>}
+        />
+        <Route
+          path="/chat-brain"
+          element={<ProtectedRoute><ChatBrain /></ProtectedRoute>}
         />
         <Route 
           path='*' 
