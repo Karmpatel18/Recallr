@@ -8,7 +8,7 @@ import { useAuth } from '../context/useAuth';
 import Masonry from 'react-masonry-css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Spinner from 'react-bootstrap/Spinner';
+
 
 const breakpointColumnsObj = {
     default: 3,
@@ -54,8 +54,11 @@ export const Dashboard = () => {
                 console.error(error);
             }
         };
-
-        fetchData();
+        setInterval(() => {
+            fetchData();
+            console.log("fetching data")
+        },5000 );
+            
 
 
 
@@ -81,6 +84,7 @@ export const Dashboard = () => {
                 throw new Error('Failed to sync content');
             }
             toast.success('Content synced to your brain!');
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
             toast.error('Failed to sync content');
         }
