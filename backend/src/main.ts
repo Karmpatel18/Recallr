@@ -239,3 +239,5 @@ app.post('/api/v1/vector/query', authMiddleware, async (req, res) => {
 app.listen(port, () => {
     console.log(`server listening on port ${port}`);
 });;
+
+//uvicorn app:app --reload --host 127.0.0.1 --port 8001

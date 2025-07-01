@@ -8,6 +8,7 @@ import { useAuth } from '../context/useAuth';
 import Masonry from 'react-masonry-css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from 'react-bootstrap/Spinner';
 
 const breakpointColumnsObj = {
     default: 3,
@@ -60,10 +61,10 @@ export const Dashboard = () => {
 
     }, [userId, token]);
     if (loading) {
-        return (<div className='flex w-full gap-3 m-3 animate-pulse'>
-            <div className='flex-1/4 w-full  bg-gradient-to-tl from-neutral-200/80 via-neutral-200 to-neutral-600/40 rounded-lg'></div>
-            <div className='flex-3/4 w-full  bg-gradient-to-br from-neutral-200/80 via-neutral-200 to-neutral-600/40 rounded-lg'></div>
-        </div>)
+        return (
+            <div className='flex w-full h-screen justify-center items-center text-neutral-800'>
+                <div className="w-10 h-10 border-4 border-neutral-800 border-t-transparent border-l-transparent rounded-full animate-spin" />
+            </div>)
     }
 
     const handleSync = async () => {
